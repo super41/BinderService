@@ -1,12 +1,24 @@
 package com.example.binderservice;
 
+import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.Parcel;
 import android.os.RemoteException;
 import android.util.Log;
 
 public class MyBinder extends Binder implements MusicInterface{
+       
+	
+	MediaPlayer mediaPlayer;
+	Context context;
+	
 
+	public MyBinder(Context context){
+		this.context=context;
+	    mediaPlayer=MediaPlayer.create(context,R.raw.fly);
+	}
+	
 	@Override
 	protected boolean onTransact(int code, Parcel data, Parcel reply, int flags) throws RemoteException {
 		// TODO Auto-generated method stub
@@ -21,19 +33,20 @@ public class MyBinder extends Binder implements MusicInterface{
 			stop();
 			break;
 		}
-		return super.onTransact(code, data, reply, flags);
+		return true;
+		//return true;
 	}
 
 	@Override
 	public void play() {
 		// TODO Auto-generated method stub
-		
+	  mediaPlayer.start();
 	}
 
 	@Override
 	public void stop() {
 		// TODO Auto-generated method stub
-		
+		mediaPlayer.stop();
 	}
 
 

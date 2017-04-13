@@ -18,7 +18,7 @@ public class MySerVice extends Service{
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
-		myBinder=new MyBinder();
+		myBinder=new MyBinder(getApplicationContext());
 	}
 	
 
